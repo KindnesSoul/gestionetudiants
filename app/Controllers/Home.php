@@ -7,7 +7,7 @@ class Home extends BaseController
     public function index(): string
     {   
         $etudiant= new \App\Models\Etudiants();
-        $etudiants=$etudiant->findAll();
+        $etudiants=$etudiant->select(['nom','prenom'])->findAll();
         
        
 
@@ -20,10 +20,11 @@ class Home extends BaseController
         //array_push($data, );
         
         
-        return view('welcome_message',['listeetudiants'=> $etudiants] );
+        return view('liste_etudiants',['listeetudiants'=> $etudiants] );
     }
-        public function test(): string
+    public function test(): string
     {
          return view('test');
     }
+    
 }

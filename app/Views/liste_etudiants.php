@@ -6,6 +6,8 @@
     <meta name="description" content="The small framework with powerful features">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="/favicon.ico">
+    <link rel="stylesheet" href="public\css\tableau.css">
+    
 
     <!-- STYLES -->
 
@@ -195,6 +197,14 @@
                 background-color: rgba(221, 72, 20, .7);
                 color: rgba(255, 255, 255, .8);
             }
+            .bouton{
+                padding: 1px 6px;
+                border: 1px outset buttonborder;
+                border-radius: 3px;
+                color: buttontext;
+                background-color: buttonface;
+                text-decoration: none;
+            }
         }
     </style>
 </head>
@@ -203,7 +213,7 @@
 <!-- HEADER: MENU + HEROE SECTION -->
 <header>
 
-    <div class="menu">
+    <!--<div class="menu">-->
         <ul>
             <li class="logo">
                 <a href="https://codeigniter.com" target="_blank">
@@ -221,26 +231,41 @@
                     href="https://codeigniter.com/contribute" target="_blank">Contribute</a>
             </li>
         </ul>
-    </div>
+    <!--</div>-->
 
     <div class="heroe">
 
-        <h1>Welcome to CodeIgniter <?= CodeIgniter\CodeIgniter::CI_VERSION ?></h1>
+        <h1>Welcome to Gestion Etudiants <?= CodeIgniter\CodeIgniter::CI_VERSION ?></h1>
 
         <h2>The small framework with powerful features</h2>
 
     </div>
 
 </header>
-
 <!-- CONTENT -->
 
 <section>
 
-    <h1><?php  
-        foreach ($listeetudiants as $etudiant) {
-            echo "<li> $etudiant[prenom] $etudiant[nom] </li>";
-        } ?></h1>
+    <h1></h1>
+    <div class=".bouton">
+    <?php  
+        //dd($listeetudiants);
+        $table = new \CodeIgniter\View\Table();
+        $table->setHeading( 'nom', 'prenom','modifier','supprimer');
+        $template=[
+            'row_start'  => '<tr>',
+            'row_end'    => ' <td> <a href="http://gestionetudiants.local/modifier-4">modifier</a> </td> <td> <a href="http://gestionetudiants.local/supprimer-4">supprimer</a>  </td></tr>',
+            'row_alt_start'  => '<tr>',
+            'row_alt_end'    => ' <td> <a href="http://gestionetudiants.local/modifier-4">modifier</a> </td> <td> <a href="http://gestionetudiants.local/supprimer-4">supprimer</a>  </td></tr>',];
+
+        $table->setTemplate($template);
+
+        echo $table->generate($listeetudiants);
+        
+        //foreach ($listeetudiants as $etudiant) {
+          //  echo "<li> $etudiant[prenom] $etudiant[nom] </li>";
+        //} ?>
+    </div>
 
     <p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
 
@@ -254,7 +279,7 @@
 
 </section>
 
-<div class="further">
+<!--<div class="further">-->
 
     <section>
 
@@ -293,23 +318,23 @@
 
     </section>
 
-</div>
+<!--</div>-->
 
 <!-- FOOTER: DEBUG INFO + COPYRIGHTS -->
 
 <footer>
-    <div class="environment">
+    <!--<div class="environment">-->
 
         <p>Page rendered in {elapsed_time} seconds using {memory_usage} MB of memory.</p>
 
         <p>Environment: <?= ENVIRONMENT ?></p>
 
-    </div>
+    <!--</div>-->
 
     <div class="copyrights">
         
         
-        <p>&copy; <?= date('Y') ." ". $prenom ." ". $message?></p>
+        <p>&copy; </p>
 
     </div>
 
