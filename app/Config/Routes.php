@@ -5,14 +5,18 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
-$routes->get('test','Home::test');
+$routes->get('/', 'Home::index', ['as' => 'accueil']);
+$routes->get('test', 'Home::test');
 /*php spark make:controller*/
-$routes->get('accueil', 'Home::index');
 
-$routes->get('nouvel','Etudiant::ajout');
+//ajout etudiants
+$routes->get('nouvel-etudiant', 'Etudiant::ajout', ['as' => 'new']);
+$routes->post('create-etudiant', 'Etudiant::create', ['as' => 'create_user']);
 
-$routes->get('modifier-(:num)','Etudiant::modif/$1');
+//modification etudiants
+$routes->get('modifier-etudiant-(:num)', 'Etudiant::modif/$1', ['as' => 'modif_user']);
+$routes->post('update-etudiant', 'Etudiant::update', ['as' => 'update_user']);
 
-$routes->get('supprimer-(:num)','Etudiant::delete/$1');
 
+//supression etudiants
+$routes->get('supprimer-etudiant-(:num)', 'Etudiant::delete/$1', ['as' => 'delete']);

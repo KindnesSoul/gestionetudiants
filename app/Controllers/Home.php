@@ -7,7 +7,9 @@ class Home extends BaseController
     public function index(): string
     {   
         $etudiant= new \App\Models\Etudiants();
-        $etudiants=$etudiant->select(['nom','prenom'])->findAll();
+        //permet de selectionner les param
+        //$etudiants=$etudiant->select(['nom','prenom'])->findAll();
+        $etudiants=$etudiant->findAll();
         
        
 
